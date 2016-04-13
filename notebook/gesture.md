@@ -1,7 +1,7 @@
 ##基于手形特征的静态手势识别
 
 ###基本流程
-![](https://github.com/hayifeng/Copter_Robot_ImageProcessing/raw/master/pictures/静态手势识别基本流程.png)
+![](http://i4.piimg.com/f69854036f6b5d51.png)
 ###一、灰度化处理
 
 ```cpp
