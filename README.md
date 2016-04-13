@@ -14,7 +14,7 @@
     2、基于视觉
       采用OpenCV机器视觉库，进行手势识别。
 ###目录
-* [静态手势识别](https://github.com/hayifeng/Copter_Robot_ImageProcessing/master/notebook/gesture)
+* [静态手势识别](https://github.com/hayifeng/Copter_Robot_ImageProcessing/master/notebook/gesture.md)
 
 * 车牌识别
 
