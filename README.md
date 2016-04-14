@@ -14,7 +14,7 @@
     2、基于视觉
       采用OpenCV机器视觉库，进行手势识别。
 ###目录
-* [OpenCV学习笔记](./notebook/leaning.md)
+* [OpenCV学习笔记](./notebook/leaning/leaning_catalog.md)
 
 * [静态手势识别](./notebook/gesture.md)
 
