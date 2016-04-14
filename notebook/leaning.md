@@ -68,3 +68,31 @@ CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn
 		默认值为0，表示目标图像取源图像的通道数。
 想深入了解颜色空间转换具体实现，可以参考：[Color conversions](http://docs.opencv.org/3.0.0/de/d25/imgproc_color_conversions.html)<br> 
 3、应用举例：<br>
+举一个最简单的颜色空间转换例子，将输入的彩色图转换为灰度图和HSV图。
+```cpp
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
+using namespace cv;
+
+void main(void){
+
+	Mat srcImg = imread("angelababy.jpg");
+	Mat garyImg, hsvImg;
+
+	cvtColor(srcImg, garyImg, CV_RGB2GRAY);		//RGB->GRAY
+	cvtColor(srcImg, hsvImg, CV_RGB2HSV);		//RGB->HSV
+
+	namedWindow("原始图");
+	namedWindow("灰度图");
+	namedWindow("HSV");
+
+	imshow("原始图", srcImg);
+	imshow("灰度图", garyImg);
+	imshow("HSV", hsvImg);
+
+	waitKey();
+}
+```
+4、运行结果：<br>
+![原始图](http://i3.piimg.com/2fa38040bc980230t.jpg)	![灰度图](http://i3.piimg.com/46711cda6ce58608t.jpg)	![HSV](http://i3.piimg.com/1355fee6ba86ac8ct.jpg)
