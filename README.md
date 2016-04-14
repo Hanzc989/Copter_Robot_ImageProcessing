@@ -14,6 +14,8 @@
     2、基于视觉
       采用OpenCV机器视觉库，进行手势识别。
 ###目录
+* OpenCV学习笔记
+
 * [静态手势识别](./notebook/gesture.md)
 
 * 车牌识别
@@ -21,3 +23,16 @@
 * 行人检测
 
 * 车辆检测
+
+###参考资料
+####链接
+* OpenCV官网    [http://opencv.org/](http://opencv.org/)
+* OpenCV学习日文网站    [http://opencv.jp/cookbook/index.html#](http://opencv.jp/cookbook/index.html#)
+* OpenCV中文论坛    [http://www.opencv.org.cn/](http://www.opencv.org.cn/)
+* 毛星云博客-OpenCV教程     [http://blog.csdn.net/zhmxy555/article/category/1923021](http://blog.csdn.net/zhmxy555/article/category/1923021)
+
+####参考书
+* 《OpenCV编程入门》 毛星云
+* 《数字图像处理》Rafael C. Gonzalez, Richard E. Woods
+* 《机器视觉》 伯特霍尔德.霍恩
+* 《学习OpenCV》
