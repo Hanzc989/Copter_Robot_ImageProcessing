@@ -52,5 +52,19 @@
 CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn = 0 );
 ```
 2、参数说明：<br>
+* src	:	输入图像
+* dst	:	输出图像
+* code	:	颜色空间转换标示符。请参考取值列表：[enum cv::ColorConversionCodes](http://docs.opencv.org/3.0.0/d7/d1b/group__imgproc__misc.html#ga4e0972be5de079fed4e3a10e24ef5ef0)
 
+		常用取值：
+		1、RGB->Gary(RGB转换为灰度图):	COLOR_RGB2GARY	COLOR_GARY2RGB	COLOR_RGBA2GARY		COLOR_GARY2RGBA
+			RGB2GARY可以记为RGB to GARY，即RGB转换为GARY，其他值的记忆方法类似。A代表alpha通道，该通道决定图像透明度。
+		2、RGB->HSV:	COLOR_RGB2HSV		COLOR_HSV2RGB
+		3、RGB->HLS:	COLOR_RGB2HLS		COLOR_HLS2RGB
+		4、RGB->BGR:	COLOR_RGB2BGRA		COLOR_BGRA2RGBA
+
+* dstCn	:	目标图像的通道数
+
+		默认值为0，表示目标图像取源图像的通道数。
+想深入了解颜色空间转换具体实现，可以参考：[Color conversions](http://docs.opencv.org/3.0.0/de/d25/imgproc_color_conversions.html)<br> 
 3、应用举例：<br>
