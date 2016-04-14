@@ -1,4 +1,4 @@
-####[返回](./leaning_catalog.md/#目录)
+####[学习笔记目录](./leaning_catalog.md/#目录)
 ####颜色空间转换
 #####一、颜色空间
 也叫[颜色模型](http://baike.baidu.com/link?url=OPAa5xlTEK1f_zui9WWGJuk_AKQ3gtKb6H1bR2hwdd6oOO-ZNqcX5ZL5hCm_tkSAQOmVWWvVoN-6aNrAiPOQnq)，是描述使用一组值（通常使用三个、四个值或者颜色成分）表示颜色方法的抽象数学模型
