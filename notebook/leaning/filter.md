@@ -1,7 +1,7 @@
 #####[返回学习笔记目录](./leaning_catalog.md/#目录)
 ####滤波
 
-#####一、基本概念
+#####基本概念
 滤波可以用于平滑和锐化，在这里主要讨论图像平滑化，平滑滤波器的主要目的是降低噪声和模糊处理。一个比较好的去噪滤波方式是既能很好的去除噪声又不使图像的轮廓和线条模糊。<br>
 滤波从空间和频率的角度主要分为两大类：空域法和频域法<br>
 * 空域法
@@ -35,7 +35,7 @@
       空域滤波可以提供很多功能，线性滤波和非线性滤波都有应用。<br>
       低通滤波器用于平滑，高通滤波器用于锐化。
 
-#####二、线性滤波
+#####线性滤波
 `BoxBlur` `Blur` `GaussianBlur` 
 
 ######常见线性滤波器： 
@@ -127,7 +127,7 @@ CV_EXPORTS_W void GaussianBlur( InputArray src, OutputArray dst, Size ksize,
 
 * [高斯滤波介绍](http://baike.baidu.com/link?url=T1VWekYJ9Jz28swSazjCnqUrUXzz84q1s_sR9tg3SQ-Edc4gQyTNaZCiTdU9131BjR6LOQONvScFCnc81wbM6q)
 
-#####三、非线性滤波
+#####非线性滤波
 `medianBlur` `bilateralFilter`
 
 有时候，图像噪声是散粒噪声（也叫椒盐噪声）而不是高斯噪声，就是说图像偶尔出现很大值的时候，用线性滤波的话噪声像素就不能去除，而用非线性滤波的话就能达到很好的去造效果。
