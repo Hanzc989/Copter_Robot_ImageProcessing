@@ -1,9 +1,9 @@
 #####[返回学习笔记目录](./leaning_catalog.md/#目录)
 ####颜色空间转换
-#####一、颜色空间
+#####颜色空间
 也叫[颜色模型](http://baike.baidu.com/link?url=OPAa5xlTEK1f_zui9WWGJuk_AKQ3gtKb6H1bR2hwdd6oOO-ZNqcX5ZL5hCm_tkSAQOmVWWvVoN-6aNrAiPOQnq)，是描述使用一组值（通常使用三个、四个值或者颜色成分）表示颜色方法的抽象数学模型
 
-#####二、颜色有关基本概念
+#####颜色有关基本概念
 * 色相(Hum)
 
 		是色彩的基本属性，就是平常所说的颜色名称，如红色、黄色等。
@@ -27,7 +27,7 @@
 		而对比度小，则会让整个画面都灰蒙蒙的。
 		增加图片的对比度后，黑白反差增大。
 
-#####三、OpenCV颜色空间转换函数
+#####OpenCV颜色空间转换函数
 1、函数原型：<br>
 ```cpp
 CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn = 0 );
