@@ -36,7 +36,7 @@
       低通滤波器用于平滑，高通滤波器用于锐化。
 
 #####二、线性滤波
-`BoxBlur` `Blur` `GaussianBlur` `medianBlur` `bilateralFilter`
+`BoxBlur` `Blur` `GaussianBlur` 
 
 ######常见线性滤波器： 
 * 低通滤波器 ： 允许低频率通过
@@ -82,7 +82,9 @@ CV_EXPORTS_W void boxFilter( InputArray src, OutputArray dst, int ddepth,
 	![方框滤波公式](http://i2.piimg.com/987a7d5b8ce0ceba.png)
 
 		由上式可以看出，当normalize = true时，方框滤波就是均值滤波，即均值滤波是方框滤波归一化后的特殊情况。
-		注：这里的K的取值表示的我觉得有点问题
+		注：上面两个式子我是抄书上的，但是第一个K值的表示我觉得有点不准确，容易让人产生误导。这里有个加权平均的概念，
+		    即一些像素的重要性（权重）比另一些像素的重要性大，所以滤波器的系数不一定全是1，这里需要读源代码具体实现才能理清，
+		    我先放个疑问在这里，以后再补充。
 
 ######均值滤波<br>
 * 函数定义：
@@ -93,6 +95,15 @@ void cv::blur( InputArray src, OutputArray dst,
     boxFilter( src, dst, -1, ksize, anchor, true, borderType );
 }
 ```
+* 参数说明
+	* src : 输入图像
+	* dst : 输出图像
+	* ksize : 内核大小
+	* anchor : 锚点
+	* borderType : 用于推断图像外部像素的某种边界模式。
+
+注：讲方框滤波的时候就提过，均值滤波是归一化后的方框滤波，从函数定义也可以看出，blur()就是在内部调用的boxFilter()函数。
+
 ######高斯滤波<br>
 * 函数原型：
 ```cpp
@@ -100,17 +111,73 @@ CV_EXPORTS_W void GaussianBlur( InputArray src, OutputArray dst, Size ksize,
                                 double sigmaX, double sigmaY = 0,
                                 int borderType = BORDER_DEFAULT );
 ```
+* 参数说明：
+	* src : 输入图像
+	* dst : 输出图像
+	* ksize : 高斯内核大小
+
+		ksize.width和ksize.height可以不同，但必须都要是正数和奇数或者是0，这由sigma计算而来。	
+
+	* sigmaX : 高斯函数在X方向的标准方差
+	* sigmaY : 高斯函数在Y方向的标准方差
+
+		若为0则会设为sigmaX，若sigmaX和sigmaY都为0，则由ksize.width和ksize.height计算而来。
+
+	* borderType : 用于推断图像外部像素的某种边界模式。
+
+* [高斯滤波介绍](http://baike.baidu.com/link?url=T1VWekYJ9Jz28swSazjCnqUrUXzz84q1s_sR9tg3SQ-Edc4gQyTNaZCiTdU9131BjR6LOQONvScFCnc81wbM6q)
 
 #####三、非线性滤波
+`medianBlur` `bilateralFilter`
+
+有时候，图像噪声是散粒噪声（也叫椒盐噪声）而不是高斯噪声，就是说图像偶尔出现很大值的时候，用线性滤波的话噪声像素就不能去除，而用非线性滤波的话就能达到很好的去造效果。
+
 ######中值滤波<br>
+* 中值滤波原理：
+
+		基本思想：用像素点邻域灰度值的中值来代替该像素点的灰度值，让周围的像素值接近与真实值。
+		          这种方法在去除脉冲噪声、椒盐噪声的同时又能保留图像的边缘细节。
+		与均值滤波相比，中值滤波花费的时间是均值滤波的5倍以上。	
+
 * 函数原型：
 ```cpp
 CV_EXPORTS_W void medianBlur( InputArray src, OutputArray dst, int ksize );
 ```
+* 参数说明：
+	* src : 输入图像
+	* dst : 输出图像
+	* ksize : int类型，孔径的线性尺寸。
+
+		这个参数必须是大于1的奇数，比如3、5、7、9......
+
 ######双边滤波<br>
+* 双边滤波原理：
+
+		双边滤波是结合图像的空间邻近度和像素值相似度的一种折中处理，同时考虑空域信息和灰度相似性，达到保边去造的目的。
+		特点是：对于彩色图像里的高频噪声，双边滤波器不能够干净滤掉，只能对低频信息进行较好滤波。
+
 * 函数原型：
 ```cpp
 CV_EXPORTS_W void bilateralFilter( InputArray src, OutputArray dst, int d,
                                    double sigmaColor, double sigmaSpace,
                                    int borderType = BORDER_DEFAULT );
 ```
+* 参数说明：
+	* src : 输入图像 
+	* dst : 输出图像
+	* d : 在过滤过程中每个像素邻域的直径。
+
+		若这个值为负数，则会从第五个参数sigmaSpace计算出来。
+
+	* sigmaColor : 颜色空间滤波器的sigma值。
+
+		这个参数的值越大，就表明该像素邻域内有越宽广的颜色会被混合到一起，产生较大的半相等颜色区域。 
+	
+	* sigmaSpace : 坐标空间中滤波器的sigma值。
+
+		坐标空间的标注方差。这个参数的数值越大，表示越远的像素会相互影响，从而使更大的区域中足够相似的颜色获取相同的颜色。
+		另外，若d>0，d指定了邻域大小且与sigmaSpace无关，否则，d正比于sigmaSpace。
+
+	* borderType : 用于推断图像外部像素的某种边界模式。
+#####应用举例
+
