@@ -59,6 +59,30 @@ CV_EXPORTS_W void boxFilter( InputArray src, OutputArray dst, int ddepth,
                              int borderType = BORDER_DEFAULT );
 ```
 * 参数说明：
+	* src : 输入图像
+	* dst : 目标图像
+	* ddepth ： 输出图像深度
+
+		-1代表原图深度，即src.depth()
+
+	* ksize : 内核大小
+	
+		类型为Size类型。Size(w,h)表内核大小，w表示像素宽度，h代表像素高度
+		比如：Size(3,3)就表示3X3的内核大小。
+
+	* anchor : 锚点（即被平滑那个点）
+
+		注意有默认值Point(-1,-1)，不给它赋值的话，就默认取核的中心为锚点。
+
+	* normalize : 标识符。表示内核是否被其区域归一化。默认值为true
+	* borderType : 用于推断图像外部像素的某种边界模式。这个参数用的比较少，不太清楚。参考[enum cv::BorderTypes](http://docs.opencv.org/3.0.0/d2/de8/group__core__array.html#ga209f2f4869e304c82d07739337eae7c5)
+* BoxFilter()所用内核表示：
+
+  ![方框滤波内核表示](http://i2.piimg.com/b3d9d2e57a634705.png)
+	![方框滤波公式](http://i2.piimg.com/987a7d5b8ce0ceba.png)
+
+		由上式可以看出，当normalize = true时，方框滤波就是均值滤波，即均值滤波是方框滤波归一化后的特殊情况。
+		注：这里的K的取值表示的我觉得有点问题
 
 ######均值滤波<br>
 * 函数定义：
