@@ -38,30 +38,30 @@
 #####二、线性滤波
 `BoxBlur` `Blur` `GaussianBlur` `medianBlur` `bilateralFilter`
 
-* 常见线性滤波器： 
-	* 低通滤波器 ： 允许低频率通过
-	* 高通滤波器 ： 允许高频率通过
-	* 带通滤波器 ： 允许一定范围频率通过
-	* 带阻滤波器 ： 阻止一定范围频率通过并且允许其他频率通过
-	* 全通滤波器 ： 允许所有频率通过，仅仅改变相位关系
-	* 陷波滤波器 ： 阻止一个狭窄频率范围通过，是一种特殊带阻滤波器
+######常见线性滤波器： 
+* 低通滤波器 ： 允许低频率通过
+* 高通滤波器 ： 允许高频率通过
+* 带通滤波器 ： 允许一定范围频率通过
+* 带阻滤波器 ： 阻止一定范围频率通过并且允许其他频率通过
+* 全通滤波器 ： 允许所有频率通过，仅仅改变相位关系
+* 陷波滤波器 ： 阻止一个狭窄频率范围通过，是一种特殊带阻滤波器
 
-* 邻域算子与线性邻域滤波
+######邻域算子与线性邻域滤波
 
 		邻域算子（局部算子）：利用给定像素周围的像素值来决定此像素最终输出值的一种算子。
 
-* 方框滤波<br>
-1、函数原型：
+######方框滤波<br>
+* 函数原型：
 ```cpp
 CV_EXPORTS_W void boxFilter( InputArray src, OutputArray dst, int ddepth,
                              Size ksize, Point anchor = Point(-1,-1),
                              bool normalize = true,
                              int borderType = BORDER_DEFAULT );
 ```
-2、参数说明：
+* 参数说明：
 
-* 均值滤波<br>
-1、函数定义：
+######均值滤波<br>
+* 函数定义：
 ```cpp
 void cv::blur( InputArray src, OutputArray dst,
            Size ksize, Point anchor, int borderType )
@@ -69,8 +69,8 @@ void cv::blur( InputArray src, OutputArray dst,
     boxFilter( src, dst, -1, ksize, anchor, true, borderType );
 }
 ```
-* 高斯滤波<br>
-1、函数原型：
+######高斯滤波<br>
+* 函数原型：
 ```cpp
 CV_EXPORTS_W void GaussianBlur( InputArray src, OutputArray dst, Size ksize,
                                 double sigmaX, double sigmaY = 0,
@@ -78,13 +78,13 @@ CV_EXPORTS_W void GaussianBlur( InputArray src, OutputArray dst, Size ksize,
 ```
 
 #####三、非线性滤波
-* 中值滤波<br>
-1、函数原型：
+######中值滤波<br>
+* 函数原型：
 ```cpp
 CV_EXPORTS_W void medianBlur( InputArray src, OutputArray dst, int ksize );
 ```
-* 双边滤波<br>
-1、函数原型：
+######双边滤波<br>
+* 函数原型：
 ```cpp
 CV_EXPORTS_W void bilateralFilter( InputArray src, OutputArray dst, int d,
                                    double sigmaColor, double sigmaSpace,
