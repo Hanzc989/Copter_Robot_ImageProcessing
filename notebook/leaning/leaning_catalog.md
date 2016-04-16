@@ -6,7 +6,7 @@
 * [颜色空间转换](./cvtcolor.md)
 	* [颜色空间](./cvtcolor.md/#颜色空间)
 	* [颜色有关基本概念](./cvtcolor.md/#颜色有关基本概念)
-	* [OpenCV颜色空间转换函数](./cvtcolor.md/#OpenCV颜色空间转换函数)
+	* [相关颜色空间转换函数](./cvtcolor.md/#相关颜色空间转换函数)
 * [滤波](./filter.md)
   * [线性滤波](./filter.md/#线性滤波)
     * [方框滤波](./filter.md/#方框滤波)
