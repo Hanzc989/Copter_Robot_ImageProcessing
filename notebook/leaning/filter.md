@@ -179,5 +179,6 @@ CV_EXPORTS_W void bilateralFilter( InputArray src, OutputArray dst, int d,
 		另外，若d>0，d指定了邻域大小且与sigmaSpace无关，否则，d正比于sigmaSpace。
 
 	* borderType : 用于推断图像外部像素的某种边界模式。
+
 #####应用举例
 
