@@ -13,6 +13,7 @@
 		空域法优缺点：优点就是简单直观。另外要强调的是，典型的随机噪声是由灰度级的急剧变化组成，所以均值滤波只能降低噪声，并不能完全除去噪声。
 					缺点就是，因为图像边缘也是由图像灰度尖锐变化带来的特性，所以均值滤波会导致边缘模糊的负面效应。
 		*除了平滑空间滤波器以外，还有锐化空间滤波器，这里我就不介绍了，有兴趣自己去了解
+		*空间域的平滑滤波一般采用简单平均法进行，就是求邻近像素点的平均亮度值。邻域大小与平滑效果直接相关，越大平滑效果越好，但是输出图像也会越模糊。
 
 * 频域法
 
@@ -35,10 +36,56 @@
       低通滤波器用于平滑，高通滤波器用于锐化。
 
 #####二、线性滤波
-* 方框滤波
-* 均值滤波
-* 高斯滤波
+`BoxBlur` `Blur` `GaussianBlur` `medianBlur` `bilateralFilter`
+* 常见线性滤波器： 
+	* 低通滤波器 ： 允许低频率通过
+	* 高通滤波器 ： 允许高频率通过
+	* 带通滤波器 ： 允许一定范围频率通过
+	* 带阻滤波器 ： 阻止一定范围频率通过并且允许其他频率通过
+	* 全通滤波器 ： 允许所有频率通过，仅仅改变相位关系
+	* 陷波滤波器 ： 阻止一个狭窄频率范围通过，是一种特殊带阻滤波器
+
+* 邻域算子与线性邻域滤波
+
+		邻域算子（局部算子）：利用给定像素周围的像素值来决定此像素最终输出值的一种算子。
+
+* 方框滤波<br>
+1、函数原型：
+```cpp
+CV_EXPORTS_W void boxFilter( InputArray src, OutputArray dst, int ddepth,
+                             Size ksize, Point anchor = Point(-1,-1),
+                             bool normalize = true,
+                             int borderType = BORDER_DEFAULT );
+```
+2、参数说明：
+
+* 均值滤波<br>
+1、函数定义：
+```cpp
+void cv::blur( InputArray src, OutputArray dst,
+           Size ksize, Point anchor, int borderType )
+{
+    boxFilter( src, dst, -1, ksize, anchor, true, borderType );
+}
+```
+* 高斯滤波<br>
+1、函数原型：
+```cpp
+CV_EXPORTS_W void GaussianBlur( InputArray src, OutputArray dst, Size ksize,
+                                double sigmaX, double sigmaY = 0,
+                                int borderType = BORDER_DEFAULT );
+```
 
 #####三、非线性滤波
-* 中值滤波
-* 双边滤波
+* 中值滤波<br>
+1、函数原型：
+```cpp
+CV_EXPORTS_W void medianBlur( InputArray src, OutputArray dst, int ksize );
+```
+* 双边滤波<br>
+1、函数原型：
+```cpp
+CV_EXPORTS_W void bilateralFilter( InputArray src, OutputArray dst, int d,
+                                   double sigmaColor, double sigmaSpace,
+                                   int borderType = BORDER_DEFAULT );
+```
