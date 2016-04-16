@@ -37,6 +37,7 @@
 
 #####二、线性滤波
 `BoxBlur` `Blur` `GaussianBlur` `medianBlur` `bilateralFilter`
+
 * 常见线性滤波器： 
 	* 低通滤波器 ： 允许低频率通过
 	* 高通滤波器 ： 允许高频率通过
